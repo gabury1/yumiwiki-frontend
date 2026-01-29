@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@import "./markdown.css";
+
+/* ===== 기본 테마 색상 (배경/글자) ===== */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.dark {
+  --background: #1E1B18;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* 유미위키 브랜드 색상 */
+  --color-ivory: #F9F4ED;
+  --color-mint: #7FB3B3;
+  --color-orange: #D35400;
+  --color-dark-header: #2D2824;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== 유미위키 커스텀 색상 클래스 ===== */
+.bg-ivory {
+  background-color: #F9F4ED;
+}
+
+.border-mint {
+  border-color: #7FB3B3;
+}
+
+.text-orange {
+  color: #D35400;
+}
+
+.bg-dark-header {
+  background-color: #2D2824;
+}
+
+
+

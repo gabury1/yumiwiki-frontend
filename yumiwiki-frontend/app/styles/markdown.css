@@ -1,0 +1,131 @@
+/* 마크다운 스타일 */
+.markdown-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content p {
+  margin-bottom: 1rem;
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+.markdown-content ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content li {
+  margin-bottom: 0.25rem;
+}
+
+/* 인라인 코드 */
+.markdown-content code {
+  background-color: #f3f4f6;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: monospace;
+}
+
+.dark .markdown-content code {
+  background-color: #2D2824;
+}
+
+/* 코드 블록 */
+.markdown-content pre {
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.dark .markdown-content pre {
+  background-color: #2D2824;
+}
+
+.markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* 위키 링크 스타일 */
+.markdown-content a.wiki-link-exist {
+  color: #D35400;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.markdown-content a.wiki-link-exist:hover {
+  color: #B84700;
+}
+
+.markdown-content a.wiki-link-nonexist {
+  color: #DC2626;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.markdown-content a.wiki-link-nonexist:hover {
+  color: #B91C1C;
+}
+
+/* 외부 링크 */
+.markdown-content a:not(.wiki-link-exist):not(.wiki-link-nonexist) {
+  color: #2563EB;
+  text-decoration: underline;
+}
+
+/* 모바일 폰트 크기 및 여백 최적화 */
+@media (max-width: 768px) {
+  .markdown-content h1 {
+    font-size: 1.5rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .markdown-content h2 {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .markdown-content h3 {
+    font-size: 1.125rem;
+    margin-top: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .markdown-content ul,
+  .markdown-content ol {
+    margin-left: 1rem;
+  }
+
+  .markdown-content p {
+    margin-bottom: 0.75rem;
+  }
+}
