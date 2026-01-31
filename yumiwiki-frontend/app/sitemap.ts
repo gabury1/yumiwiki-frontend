@@ -6,7 +6,7 @@ import { fetchDocumentList } from '@/lib/api';
  * /sitemap.xml 경로에 자동으로 생성됨
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yumiwiki.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yuumi.wiki';
 
   try {
     // API에서 모든 문서 목록 가져오기
