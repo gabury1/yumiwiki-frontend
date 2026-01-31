@@ -51,6 +51,11 @@ export const metadata: Metadata = {
     index: true, // 검색 결과에 페이지 표시 허용
     follow: true, // 페이지 내 링크 추적 허용
   },
+
+  // Google Search Console 사이트 소유권 확인
+  verification: {
+    google: 'c0cQ-QWNDj3VQK9GiV94GSmevTykqVNqz1o4K1ga36I',
+  },
 };
 
 export default function RootLayout({
