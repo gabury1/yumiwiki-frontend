@@ -1,5 +1,41 @@
 import { cache } from 'react';
 
+/**
+ * localStorage에서 deviceID를 가져오는 헬퍼 함수
+ * Server-side에서는 null 반환
+ */
+function getDeviceId(): string | null {
+  if (typeof window === 'undefined') return null; // Server-side
+
+  try {
+    const stored = localStorage.getItem('device-storage');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      return parsed.state?.deviceId || null;
+    }
+  } catch {
+    return null;
+  }
+  return null;
+}
+
+/**
+ * API 요청 시 사용할 헤더 생성
+ * deviceID가 있으면 X-Device-ID 헤더에 포함
+ */
+function getApiHeaders(): HeadersInit {
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+
+  const deviceId = getDeviceId();
+  if (deviceId) {
+    headers['X-Device-ID'] = deviceId;
+  }
+
+  return headers;
+}
+
 // API 응답 타입
 export interface DocumentData {
   title: string;
@@ -25,7 +61,9 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
  */
 export const fetchDocument = cache(async (title: string): Promise<DocumentData | null> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/docs/${encodeURIComponent(title)}`);
+    const response = await fetch(`${API_BASE_URL}/api/docs/${encodeURIComponent(title)}`, {
+      headers: getApiHeaders(),
+    });
 
     if (!response.ok) {
       return null;
@@ -47,7 +85,9 @@ export const fetchDocument = cache(async (title: string): Promise<DocumentData |
  */
 export const fetchDocumentList = cache(async (limit: number = 5): Promise<DocumentListItem[]> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/docs?limit=${limit}`);
+    const response = await fetch(`${API_BASE_URL}/api/docs?limit=${limit}`, {
+      headers: getApiHeaders(),
+    });
 
     if (!response.ok) {
       return [];

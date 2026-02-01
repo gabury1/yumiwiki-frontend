@@ -4,6 +4,7 @@ import "./styles/globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ThemeProvider from "./components/ThemeProvider";
+import DeviceProvider from "./components/DeviceProvider";
 import FloatingYumi from "./components/FloatingYumi";
 
 const geistSans = Geist({
@@ -86,6 +87,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <ThemeProvider />
+        <DeviceProvider />
         <Header />
         <main className="flex-1">
           {children}
