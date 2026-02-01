@@ -12,16 +12,19 @@ import type { Metadata } from 'next';
  */
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ title: string }>;
+  searchParams: Promise<{ utm_source?: string; referer_doc?: string }>;
 }): Promise<Metadata> {
   // URL 파라미터에서 문서 제목 추출
   const { title } = await params;
+  const { utm_source, referer_doc } = await searchParams;
   // URL 인코딩된 제목을 디코딩 (예: "Next.js" → "Next.js")
   const decodedTitle = decodeURIComponent(title);
 
-  // 백엔드 API에서 문서 데이터 가져오기
-  const docData = await fetchDocument(decodedTitle);
+  // 백엔드 API에서 문서 데이터 가져오기 (추적 파라미터 포함)
+  const docData = await fetchDocument(decodedTitle, { utm_source, referer_doc });
 
   // 문서가 존재하지 않는 경우 (404 상황)
   if (!docData) {
@@ -52,14 +55,17 @@ export async function generateMetadata({
 
 export default async function DocumentPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ title: string }>;
+  searchParams: Promise<{ utm_source?: string; referer_doc?: string }>;
 }) {
   const { title } = await params;
+  const { utm_source, referer_doc } = await searchParams;
   const decodedTitle = decodeURIComponent(title);
 
-  // API에서 문서 데이터 가져오기
-  const docData = await fetchDocument(decodedTitle);
+  // API에서 문서 데이터 가져오기 (추적 파라미터 포함)
+  const docData = await fetchDocument(decodedTitle, { utm_source, referer_doc });
 
   // 문서를 찾지 못한 경우
   if (!docData) {
@@ -84,7 +90,7 @@ export default async function DocumentPage({
 
         {/* 오른쪽: 문서 목록 */}
         <aside className="w-full md:w-80 md:flex-shrink-0">
-          <DocumentList />
+          <DocumentList currentDoc={decodedTitle} />
         </aside>
       </div>
     </div>

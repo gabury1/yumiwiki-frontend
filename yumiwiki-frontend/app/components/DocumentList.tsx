@@ -5,7 +5,7 @@ import { fetchDocumentList } from '@/lib/api';
  * 문서 목록을 표시하는 컴포넌트
  * 최근 문서 또는 랜덤 문서 목록을 카드 형식으로 보여줍니다
  */
-export default async function DocumentList() {
+export default async function DocumentList({ currentDoc }: { currentDoc: string }) {
   // API에서 문서 목록 가져오기 (5개)
   const documents = await fetchDocumentList(5);
 
@@ -35,7 +35,7 @@ export default async function DocumentList() {
           documents.map((doc) => (
             <li key={doc.title}>
               <Link
-                href={`/docs/${encodeURIComponent(doc.title)}`}
+                href={`/docs/${encodeURIComponent(doc.title)}?referer_doc=${encodeURIComponent(currentDoc)}`}
                 className="flex items-center justify-between py-2 px-3 rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
               >
                 {/* 문서 제목 */}
